@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Josefin+Sans&family=Poppins&family=Source+Sans+Pro&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    font-family: 'Inter';
+    color: white;
+    padding: 0 15px;
+}
+.productos {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(102, 102, 102);
+    height: 50px;
+}
+.ul-productos {
+    list-style: none;
+    display: none;
+    position: absolute;
+}
+.li-productos:hover > .ul-productos {
+    display: block;
+}
+.ul-productos li {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-top: 20px;
+    height: 30px;
+    width: 120px;
+    background-color: rgb(102, 102, 102);
+}
+#accesorios {
+    padding-bottom: 20px;
+}
+#robertoSanchez:hover {
+    color: gold;
+}
