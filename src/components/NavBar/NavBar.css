@@ -18,6 +18,10 @@ a {
     background-color: rgb(102, 102, 102);
     height: 50px;
 }
+.logo {
+    height: 50px;
+    width: 50px;
+}
 .ul-productos {
     list-style: none;
     display: none;
@@ -40,4 +44,5 @@ a {
 }
 #robertoSanchez:hover {
     color: gold;
+    transition: 0.9s;
 }
