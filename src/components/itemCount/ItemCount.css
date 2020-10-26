@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Josefin+Sans&family=Poppins&family=Source+Sans+Pro&display=swap');
+
+.divItemCount {
+    width: 150px;
+}
+.divButtons {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.pCantidad {
+    font-size: 25px;
+}
+.addToCart {
+    height: 30px;
+}
