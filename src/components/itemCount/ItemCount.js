@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import './ItemCount.css';
+import '../ItemListContainer/ItemListContainer';
 
     function Contador ({stock, initial, onAdd}) {
 
         const [cantidad, setCantidad] = useState(initial);
-
-        function onAdd () {
-            alert ('Agregaste ' + cantidad + ' al carrito');
-            }
 
         function aumentar () {
             return setCantidad(cantidad + 1);
@@ -19,11 +16,11 @@ import './ItemCount.css';
 
         return <div className='divItemCount'>
                     <div className='divButtons'>
-                        <button className='buttons' disabled={cantidad === stock ? true : false} onClick={aumentar}>+</button>
-                        <p className='pCantidad'>{cantidad}</p>
                         <button className='buttons' disabled={cantidad === 0 ? true : false} onClick={disminuir}>-</button>
+                        <p className='pCantidad'>{cantidad}</p>
+                        <button className='buttons' disabled={cantidad === stock ? true : false} onClick={aumentar}>+</button>
                     </div>
-                    <button className='addToCart' disabled={cantidad === 0 || stock === 0 ? true : false} onClick={onAdd}>Agregar al carrito</button>
+                    <button className='addToCart' disabled={cantidad === 0 || stock === 0 ? true : false} onClick={() => onAdd(cantidad)}>Agregar al carrito</button>
                     <p>Stock disponible: {stock}</p>
                 </div>
     }
