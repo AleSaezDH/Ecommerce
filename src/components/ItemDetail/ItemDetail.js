@@ -12,6 +12,7 @@ function itemDetail ({prop}) {
                         <li>{ x.id }</li>
                         <li>{ x.title }</li>
                         <li>{ x.price }</li>
+                        <li>{ x.description }</li>
                         <li>{ x.pictureUrl }</li>
                     </ul>
     </div>);
