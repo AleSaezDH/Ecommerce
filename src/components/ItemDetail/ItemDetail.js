@@ -2,20 +2,21 @@ import React from 'react';
 import ItemCount from '../itemCount/ItemCount';
 import '../Items/Item.css';
 
-function itemDetail ({prop}) {
+function itemDetail ({item}) {
+
     function onAdd (cantidad) {
         alert ('Agregaste ' + cantidad + ' al carrito');
         }
-    return prop.map(x => <div className='item-div'>
-                    <ItemCount stock={100} initial={1} onAdd={onAdd}/>
-                    <ul>
-                        <li>{ x.id }</li>
-                        <li>{ x.title }</li>
-                        <li>{ x.price }</li>
-                        <li>{ x.description }</li>
-                        <li>{ x.pictureUrl }</li>
-                    </ul>
-    </div>);
+        console.log(item);
+    return <div>
+                <ItemCount stock={100} initial={1} onAdd={onAdd}/>
+                <ul>
+                    <li>{ item.title }</li>
+                    <li>{ item.price }</li>
+                    <li>{ item.description }</li>
+                    <li>{ item.pictureUrl }</li>
+                </ul>
+    </div>
 }
 
 export default itemDetail;

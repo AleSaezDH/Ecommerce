@@ -13,15 +13,15 @@ const getItem = new Promise ((res) => {
         useEffect(() => {
             getItem.then(x => {
                 setTimeout(() => {
-                    setProducto(x);
+                    let itemId = x.filter(x => x.id == 1);
+                    setProducto(itemId[0]);
                 }, 2000)
             });
         }, [])
 
         return <>
         <h1 style={{backgroundColor:'red'}}>{title}</h1>
-    <p></p>
-        <ItemDetail prop = {producto}/>
+        <ItemDetail item = {producto}/>
         </>
     }
 

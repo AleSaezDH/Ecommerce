@@ -21,7 +21,7 @@ function List ({title}) {
 
     return <>
     <h1 style={{backgroundColor:'blue'}}>{title}</h1>
-    <ItemList prop={item}/>
+    <ItemList items={item}/>
     </>
 }
 
