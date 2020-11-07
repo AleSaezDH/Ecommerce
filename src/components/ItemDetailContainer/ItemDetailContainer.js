@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
+import { useParams } from 'react-router-dom';
 
-let productos = [{ id: '1', title: 'Nike Air Max', price: '$ 8000', pictureUrl: 'pictureUrl', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis repellat itaque pariatur non quidem iste ea, commodi, hic architecto reiciendis sunt est nobis tempora quas earum ipsam quibusdam suscipit libero.' }, { id: '2', title: 'Supreme', price: '$ 12000', pictureUrl: 'pictureUrl', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis repellat itaque pariatur non quidem iste ea, commodi, hic architecto reiciendis sunt est nobis tempora quas earum ipsam quibusdam suscipit libero.' }];
+let productos = [{ id: '1', category:'zapatillas', title: 'Nike Air Max', price: '$ 8000', pictureUrl: 'pictureUrl', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis repellat itaque pariatur non quidem iste ea, commodi, hic architecto reiciendis sunt est nobis tempora quas earum ipsam quibusdam suscipit libero.' }, { id: '2', category:'buzo', title: 'Supreme', price: '$ 12000', pictureUrl: 'pictureUrl', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis repellat itaque pariatur non quidem iste ea, commodi, hic architecto reiciendis sunt est nobis tempora quas earum ipsam quibusdam suscipit libero.' }];
 
 const getItem = new Promise ((res) => {
     res(productos)
@@ -9,11 +10,12 @@ const getItem = new Promise ((res) => {
 
     function ItemDetailContainer ({title}) {
         const [producto, setProducto] = useState([]);
+        const {id} = useParams();
 
         useEffect(() => {
             getItem.then(x => {
                 setTimeout(() => {
-                    let itemId = x.filter(x => x.id == 1);
+                    let itemId = x.filter(x => x.id == id);
                     setProducto(itemId[0]);
                 }, 2000)
             });
