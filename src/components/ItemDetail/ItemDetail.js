@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ItemCount from '../itemCount/ItemCount';
+import Button from '../ButtonFinishBuying/ButtonFinishBuying';
 import '../Items/Item.css';
 
-function itemDetail ({item}) {
+function ItemDetail ({item}) {
+
+    const [click, setClick] = useState(false);
 
     function onAdd (cantidad) {
         alert ('Agregaste ' + cantidad + ' al carrito');
+        setClick(true);
         }
-        console.log(item);
-    return <div>
-                <ItemCount stock={100} initial={1} onAdd={onAdd}/>
+
+    return <div> {click == false ? <ItemCount stock={100} initial={1} onAdd={onAdd} /> : <Button />}
                 <ul>
                     <li>{ item.title }</li>
                     <li>{ item.price }</li>
@@ -19,4 +22,4 @@ function itemDetail ({item}) {
     </div>
 }
 
-export default itemDetail;
+export default ItemDetail;
