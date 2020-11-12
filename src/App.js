@@ -23,9 +23,7 @@ function App() {
           <Route exact path='/item/:id'>
             <ItemDetailContainer title='ItemDetailContainer'/>
           </Route>
-          <Route exact path='/cart'>
-            <p>Carrito</p>
-          </Route>
+          <Route exact path='/cart'></Route>
         </Switch>
       </div>
     </BrowserRouter>

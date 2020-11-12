@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
     function Items (prop) {
         let id = prop.id;
-        console.log(id);
 
         function onAdd (cantidad) {
             alert ('Agregaste ' + cantidad + ' al carrito');
