@@ -19,9 +19,8 @@ function List ({title}) {
                 let categoria = x.filter(articulo => articulo.category == category);
                 setItem(categoria);
             } else {
-            setTimeout(() => {
                 setItem(x);
-            }, 2000);;}
+;;}
         })
     }, [category]);
 
