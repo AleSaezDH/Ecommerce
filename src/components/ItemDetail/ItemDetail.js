@@ -3,7 +3,6 @@ import ItemCount from '../itemCount/ItemCount';
 import Button from '../ButtonFinishBuying/ButtonFinishBuying';
 import '../Items/Item.css';
 import { useCartContext } from '../../context/CartContext';
-import cart from '../CartWidget/CartWidget';
 
 function ItemDetail ({item}) {
 

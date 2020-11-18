@@ -8,14 +8,14 @@ export default function CartProvider ({children, defaultCartValue}) {
     const [cartItems, setCartItems] = useState(defaultCartValue);
 
     function add (itemAdd) {
-        let findItem = []
-        findItem = cartItems.find(item => item.itemInformation.id == itemAdd.itemInformation.id);
+        let findItem = cartItems.find(item => item.itemInformation.id == itemAdd.itemInformation.id);
 
         if (findItem) {
             let newQuantity = findItem.quantity + itemAdd.quantity;
             let indice = cartItems.indexOf(findItem);
-            cartItems[indice].quantity = newQuantity;
-            setCartItems(cartItems);
+            let newCart = [...cartItems];
+            newCart[indice].quantity = newQuantity;
+            setCartItems(newCart);
         } else {
             let todosLosProductos = [itemAdd, ...cartItems];
             setCartItems(todosLosProductos);
@@ -23,18 +23,17 @@ export default function CartProvider ({children, defaultCartValue}) {
     }
 
     function remove (itemRemove) {
-        let findItem = []
-        findItem = cartItems.find(item => item.itemInformation.id == itemRemove.itemInformation.id);
+        let findItem = cartItems.find(item => item.itemInformation.id == itemRemove.itemInformation.id);
+        let newCart = [...cartItems];
         if (findItem) {
             let newQuantity = findItem.quantity - 1;
             if (newQuantity == 0) {
-                let todos = [];
-                todos = cartItems.filter(item => item.itemInformation.id != findItem.itemInformation.id);
+                let todos = newCart.filter(item => item.itemInformation.id != findItem.itemInformation.id);
                 setCartItems(todos);
             } else {
-                let indice = cartItems.indexOf(findItem);
-                cartItems[indice].quantity = newQuantity;
-                setCartItems(cartItems);
+                let indice = newCart.indexOf(findItem);
+                newCart[indice].quantity = newQuantity;
+                setCartItems(newCart);
             }
         }
     }
