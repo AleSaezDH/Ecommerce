@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ItemList from '../itemList/ItemList';
 import { useParams } from 'react-router-dom';
-
-let productos = [{ id: '1', category:'zapatillas', title: 'Nike Air Max', price: 8000, pictureUrl: 'pictureUrl', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis repellat itaque pariatur non quidem iste ea, commodi, hic architecto reiciendis sunt est nobis tempora quas earum ipsam quibusdam suscipit libero.' }, { id: '2', category:'buzos', title: 'Supreme', price: 12000, pictureUrl: 'pictureUrl', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis repellat itaque pariatur non quidem iste ea, commodi, hic architecto reiciendis sunt est nobis tempora quas earum ipsam quibusdam suscipit libero.' }, { id: '3', category:'remeras', title: 'Adidas Original', price: 3500, pictureUrl: 'pictureUrl', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis repellat itaque pariatur non quidem iste ea, commodi, hic architecto reiciendis sunt est nobis tempora quas earum ipsam quibusdam suscipit libero.' }];
-
-const promise = new Promise ((res) => {
-    res(productos);
-});
+import { getFirestore } from '../../firebase';
 
 function List ({title}) {
 
@@ -14,14 +9,23 @@ function List ({title}) {
     const {category} = useParams();
 
     useEffect(() => {
-        promise.then (x => {
-            if (category) {
-                let categoria = x.filter(articulo => articulo.category == category);
-                setItem(categoria);
-            } else {
-                setItem(x);
-;;}
-        })
+        const db = getFirestore();
+        const itemCollection = db.collection('items');
+        const categorias = category ? itemCollection.where('category', '==', category) : itemCollection; 
+
+        if (category == undefined) {
+            itemCollection.get().then((querySnapshot) => {
+                if (querySnapshot.size === 0) { 
+                }
+                setItem(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+            });
+        } else {
+            categorias.get().then((querySnapshot) => {
+                if (querySnapshot.size === 0) {
+                }
+                setItem(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+            });
+        }
     }, [category]);
 
     return <>

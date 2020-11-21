@@ -13,12 +13,12 @@ function NavBar () {
                     <li><Link to='/'>Home</Link></li>
                     <li className='li-productos'><Link to='/'>Productos <FontAwesomeIcon icon={faAngleDown} /></Link>
                         <ul className='ul-productos'>
-                            <li><Link to='/categoria/remeras'>Remeras</Link></li>
-                            <li><Link to='/categoria/buzos'>Buzos</Link></li>
-                            <li><Link to='/categoria/camperas'>Camperas</Link></li>
-                            <li><Link to='/categoria/pantalones'>Pantalones</Link></li>
-                            <li><Link to='/categoria/shorts'>Shorts</Link></li>
-                            <li id='accesorios'><Link to='/categoria/accesorios'>Accesorios</Link></li>
+                            <li><Link to='/remeras'>Remeras</Link></li>
+                            <li><Link to='/buzos'>Buzos</Link></li>
+                            <li><Link to='/camperas'>Camperas</Link></li>
+                            <li><Link to='/pantalones'>Pantalones</Link></li>
+                            <li><Link to='/shorts'>Shorts</Link></li>
+                            <li id='accesorios'><Link to='/accesorios'>Accesorios</Link></li>
                         </ul>
                     </li>
                     <li><Link id='robertoSanchez' to='/about'>Roberto Sanchez</Link></li>
