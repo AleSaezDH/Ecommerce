@@ -3,6 +3,6 @@ import Items from '../Items/Item';
 
     export default function itemList ({items}) {
         let itemsForMap = items;
-    return itemsForMap.map((item) => (<Items id = {item.id} titulo = {item.title} precio = {item.price} imagen = {item.pictureUrl} />));
+    return itemsForMap.map((item) => (<Items id = {item.id} titulo = {item.title} descripcion = {item.description} precio = {item.price} imagen = {item.imageUrl} size = {item.size} />));
 
     }

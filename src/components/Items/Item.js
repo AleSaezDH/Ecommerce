@@ -12,10 +12,12 @@ import { Link } from 'react-router-dom';
         return <div className='item-div'>
                 <ItemCount stock={10} initial={1} onAdd={onAdd}/>
                 <ul>
-                    <li><Link className='a-item' to={`/item/${prop.id}`}>Ver detalle</Link></li>
                     <li>{ prop.titulo }</li>
-                    <li>{ prop.precio }</li>
+                    <li>{ prop.descripcion }</li>
                     <li>{ prop.imagen }</li>
+                    <li>{ prop.size }</li>
+                    <li>{ prop.precio }</li>
+                    <li><Link className='a-item' to={`/item/${prop.id}`}>Ver detalle</Link></li>
                 </ul>
             </div>
     }

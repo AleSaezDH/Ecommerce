@@ -13,19 +13,12 @@ function List ({title}) {
         const itemCollection = db.collection('items');
         const categorias = category ? itemCollection.where('category', '==', category) : itemCollection; 
 
-        if (category == undefined) {
-            itemCollection.get().then((querySnapshot) => {
-                if (querySnapshot.size === 0) { 
-                }
-                setItem(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-            });
-        } else {
-            categorias.get().then((querySnapshot) => {
-                if (querySnapshot.size === 0) {
-                }
-                setItem(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-            });
-        }
+        categorias.get().then((querySnapshot) => {
+            if (querySnapshot.size === 0) {
+            }
+            setItem(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+        });
+
     }, [category]);
 
     return <>
