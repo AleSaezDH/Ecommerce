@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCartContext } from '../../context/CartContext';
+import Checkout from '../Checkout/Checkout';
 import { Link } from 'react-router-dom';
 import { getFirestore } from '../../firebase';
 import firebase from 'firebase/app';
@@ -31,16 +32,17 @@ function Cart () {
             date : firebase.firestore.FieldValue.serverTimestamp(),
             total : precioTotal
         }
+        
         let db = getFirestore();
-
         let orderCollection = db.collection('orders');
         orderCollection.add(newOrder).then(({id}) => {
-            setOrderId(id)
+            setOrderId(id);
         });
-        console.log(orderId);
     }
+    console.log(orderId);
 
-return <> <h1>Carrito</h1>
+return <> {orderId == undefined ? <>
+<h1>Carrito</h1>
     <div style={cartItems.length != 0 ? {display:'block'} : {display:'none'}}>
         <form>
             <label>Nombre</label>
@@ -70,13 +72,14 @@ return <> <h1>Carrito</h1>
                     <Link style={{color:'black'}} to='/'>Ver productos</Link>
                 </div>}
     <div>
-        <button style={cartItems.length != 0 ? {display:'block'} : {display:'none'}}><Link onClick={Order} style={{color:'black'}} to='/checkout'>Finalizar compra</Link></button>
+        <button style={cartItems.length != 0 ? {display:'block'} : {display:'none'}}><Link onClick={Order} style={{color:'black'}}>Finalizar compra</Link></button>
         <button style={cartItems.length != 0 ? {display:'block'} : {display:'none'}} onClick={empty}>Vaciar carrito</button>
     </div>
     <div>
         <p style={cartItems.length != 0 ? {display:'block'} : {display:'none'}}>Total: $ { precioTotal }</p>
     </div>
-
+</> : <h1><Checkout orderId = {orderId}/></h1>
+}
 </>
 }
 
