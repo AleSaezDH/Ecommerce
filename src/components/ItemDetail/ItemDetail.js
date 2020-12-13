@@ -13,7 +13,7 @@ function ItemDetail ({item}) {
     const {add} = useCartContext();
 
     function onAdd (cantidad) {
-        alert ('Agregaste ' + cantidad + ' al carrito');
+        alert (`Agregaste ${cantidad} ${item.title} al carrito`)
         setClick(true);
         setItems(cantidad);
         add({itemInformation:item, quantity:cantidad});

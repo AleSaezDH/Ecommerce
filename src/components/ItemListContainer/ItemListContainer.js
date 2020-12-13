@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import { getFirestore } from '../../firebase';
 import { useClickContext } from '../../context/ClickContext';
 import Click from '../Click/Click';
-import SectionItemList from '../SectionItemList/SectionItemList';
 
 function List () {
 
