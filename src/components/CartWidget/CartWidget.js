@@ -1,4 +1,5 @@
 import React from 'react';
+import './CartWidget.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import '../NavBar/NavBar.css';
@@ -11,7 +12,10 @@ function Cart () {
         let cantidadTotalProductos = cantidadProductos.reduce( (valorAnterior, valorActual) => {
             return valorAnterior + valorActual;
         }, 0);
-    return <li><Link to='/cart'><FontAwesomeIcon icon={faShoppingCart}/></Link>{cantidadTotalProductos ? cantidadTotalProductos : ''}</li>
+    return <div className='divCount'>
+    <Link to='/cart'><FontAwesomeIcon icon={faShoppingCart}/></Link>
+    {cantidadTotalProductos ? <p className='count'> {cantidadTotalProductos} </p> : false}
+    </div>
 }
 
 export default Cart;

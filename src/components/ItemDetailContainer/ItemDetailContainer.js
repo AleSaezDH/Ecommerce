@@ -15,12 +15,11 @@ import { getFirestore } from '../../firebase';
                 if (!doc) {
                     console.log('el item no existe');
                 }
-                setProducto({ id: doc.id, ...doc.data() });
+                setProducto({ id: doc.id, ...doc.data() })
             });
-        }, []);
+        });
 
         return <>
-        <h1 style={{backgroundColor:'red'}}>{title}</h1>
         <ItemDetail item = {producto}/>
         </>
     }

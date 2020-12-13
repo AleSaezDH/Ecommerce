@@ -15,13 +15,12 @@ function NavBar () {
                         <ul className='ul-productos'>
                             <li><Link to='/remeras'>Remeras</Link></li>
                             <li><Link to='/buzos'>Buzos</Link></li>
-                            <li><Link to='/camperas'>Camperas</Link></li>
                             <li><Link to='/pantalones'>Pantalones</Link></li>
                             <li><Link to='/shorts'>Shorts</Link></li>
                             <li id='accesorios'><Link to='/accesorios'>Accesorios</Link></li>
                         </ul>
                     </li>
-                    <li><Link id='robertoSanchez' to='/about'>Roberto Sanchez</Link></li>
+                    <li><Link id='robertoSanchez' to='/robertosanchez'>Roberto Sánchez</Link></li>
                     <li><Link to='/envios'>Envíos</Link></li>
                     <li><Link to='/contacto'>Contacto</Link></li>
                     <li><CartWidget /></li>

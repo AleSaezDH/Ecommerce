@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 .rellenoNegro1 {
-    height: 41px;
+    height: 52px;
     background-color: black;
 }
 .divBanner {
@@ -16,6 +16,19 @@
     text-align: center;
 }
 .rellenoNegro2 {
-    height: 41px;
+    height: 52px;
     background-color: black;
+}
+.seccionItemList {
+    margin: 30px 80px;
+}
+.titulosItemList {
+    font-family: 'Poppins';
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+.articleItem {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }

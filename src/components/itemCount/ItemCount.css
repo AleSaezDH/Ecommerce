@@ -1,28 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Josefin+Sans&family=Poppins&family=Source+Sans+Pro&display=swap');
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .divItemCount {
-    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .divButtons {
-    width: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-}
-.buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    border: 1px solid black;
-    border-radius: 20px;
-}
-.pCantidad {
-    font-size: 25px;
 }
 .addToCart {
-    height: 30px;
+    margin: 15px 0;
+}
+.stock {
+    margin: 15px 0;
+}
+.countButtons {
+    font-size: 20px;
+    width: 40px;
+}
+.pCantidad {
+    font-size: 20px;
+}
+.addToCart {
+    padding: 5px;
+    font-family: 'Inter';
 }

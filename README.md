@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Comentarios
 
-## Available Scripts
+### `Título ItemListContainer`
+1. Sé que el ItemListContainer en los desafíos debe tener un título pero se lo saqué porque en la home no tengo ningún titulo que mostrar
 
-In the project directory, you can run:
+### `Contenido ItemListContainer`
+2. No me cabe duda que hay una mejor manera de trabajar las consultas a la base y el return del ItemListContainer. Entiendo que hice una consulta por cada categoría y no es la manera más óptima. En su momento intenté hacer un array que tenga el nombre de cada categoría y luego un for en donde por cada iteración del mismo vaya consultando todas las categorías que tenía ese array inicial. Esto me funcionaba pero el problema surgió cuando tuve que guardar esos datos en el hook de estado porque cada iteración del for buscaba en la base de datos según la categoría que estaba iterando y guardaba los datos en el hook item pero la siguiente iteración hacía lo mismo de modo que los datos de item se iban sobreescribiendo entonces probé con spread operator pero tampoco logré que funcionara asique lo dejé como se ve ahora.
 
-### `npm start`
+### `Estilos`
+3. Agregué algunas variables con estilos a lo largo del proyecto porque primero hice algunos CSS de cosas más generales como la home o los mismos ítems de la home
+y cuando iba a hacer otras vistas como el detalle del ítem me saltaban los mismos estilos que puse antes y como necesitaba cambiar algunos valores agregué una variable para que pise los valores del CSS ya creado inicialmente
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `ClickContext`
+4. Te quiero comentar esto porque quizá se hace confuso leerlo en el código. Creé otro context que se llama ClikContext porque quería hacer que el botón de terminar compra en la home no elimine el de agregar al carrito (porque si por ejemplo yo elijo una remera y pongo agregar al carrito pero me doy cuenta que quiero otra unidad de esa misma remera ya no puedo elegir otra más porque el botón de terminar compra no me lo permitiría) y tampoco quería que aparezca uno por cada ítem que hay entonces se me ocurrió hacer ese context para que cada vez que clickeo el botón de agregar al carrito y este botón ejecute la función onAdd, se renderice el botón de terminar compra porque en esta función agreggué el setClicker del clickContext para cambiarle el valor del hook que tengo en ese context a true y entonces poner un condicional en ItemListContainer que pregunte si ese hook es true, mostrame el botón de terminar compra (que es un componente aparte porque tiene características diferentes al de terminar compra tradicional que va en ItemDetail). Y además necesité llamar al setClicker dentro del CartContext porque cada vez que yo agregaba algo al carrito desde la home y me iba al carrito, lo vaciaba y volvía a la home, el botón de terminar compra seguía estando aunque el carrito no tuviera nada asique cuando el botón de vaciar dentro del carrito ejecuta la función empty del CartContext también me ponga en falso el valor del hook clicker del ClickContext para que no me aparezca el botón de terminar compra en la home si el carrito esta vacío. Y lo mismo sucedía cuando clickeaba el botón eliminar producto en el carrito, porque si vaciaba el carrito con ese botón no apretando el de vaciar carrito tenía el mismo problema que antes, que se seguía renderizando el botón de terminar compra
+en la home asique en CartContext agregué un if preguntando si el CartItems es 0 también poné en false el clicker
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### `Formulario Validado`
+5. Sólamente comentarte que validé rápidamente el formulario para que no se mande si no están completos los campos
 
-### `npm test`
+### `Errores de consola`
+6. Hay algunos errores que me salen en la consola que no los pude resolver. Son particularmente dos, el primero de las key en los map (porque quedamos en que no les agregaríamos manualmente las key) y el segundo en el App y en ItemListContainer sale un error de que body no puede ser hijo de div pero no entiendo cuál es el error aún buscando y probando diferentes cosas. Además eliminé los arrays que quedaban vacíos en los useEffect porque me salía este error: React Hook useEffect has a missing dependency: 
+'itemCollection'. Either include it or remove the dependency array.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Checkout`
+7. En este componente tuve que agregar un setTimeOut para poder vaciar el carrito ya que si agregaba esta función en Order dentro de Cart me renderizaba raro la aplicación porque apretaba en finalizar compra y mostraba el carrito vacío y dos segundos después mostraba el componente Checkout. Probé dentro del componente Cart ejecutar la función empty en muchos lados distintos pero siempre era ese mismo resultado asique se me ocurrió pasarla al Checkout pero también pasaba lo mismo hasta que se me ocurrió agregarle un tiempo específico para que la ejecute luego de renderizar todo. Le puse 100 ms para que sea casi instantáneo
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### `SectionItemList`
+8. Hay un componente que se llama SectionItemList que lo había creado para importarlo en ItemListContainer así optimizaba un poco el código y escribía menos líneas de en el return de ItemListContainer ya que todas las section eran iguales pero como necesitaba que cada una de estas adentro contenga otro componente que es el ItemList, React me tiraba un error que no puedo poner ese componente como hijo de otro (Objects are not valid as a React child) asique lo tuve que dejar como se ve pero el componente de SectionItemList quise dejar porque tal vez en un futuro pueda resolverlo, ya que todavía quiero implementar un loading, hacer un desplegable en el botón del carrito en el navBar, agregarle algunos efectos divertidos con CSS pero sin exagerar, agregarle la funcionalidad de elegir talles y algunas cosas más pero que Coder House no exige
