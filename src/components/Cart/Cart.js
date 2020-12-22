@@ -18,8 +18,9 @@ function Cart () {
         return valorAnterior + valorActual;
       }, 0);
 
-      async function Order () {
+      async function Order (ev) {
 
+        let inputConfirmarMail = document.getElementById('cMail').value;
         let inputNombre = document.getElementById('nombre').value;
         let inputApellido = document.getElementById('apellido').value;
         let inputMail = document.getElementById('mail').value;
@@ -28,6 +29,11 @@ function Cart () {
         let inputDomicilio = document.getElementById('domicilio').value;
 
         let todosLosInput = [inputNombre, inputApellido, inputMail, inputCelular, inputDni, inputDomicilio];
+
+        if (inputConfirmarMail != inputMail) {
+            alert('Los mails no coinciden');
+            return false;
+        }
 
             for (let i = 0; todosLosInput.length; i++) {
                 if (todosLosInput[i] !== undefined) {
@@ -51,10 +57,17 @@ function Cart () {
         orderCollection.add(newOrder).then(({id}) => {
             setOrderId(id);
         })
-        const itemStock = await db.collection('items').where(firebase.firestore.FieldPath.documentId(), 'in', cartItems.map(x => {return x.itemInformation.id})).get();
-        const [item] = itemStock.docs;
-        await item.ref.update({ stock: item.data().stock - 1 })
-        setClicker(false);
+
+        if (newOrder != undefined) {
+            const itemStock = await db.collection('items').where(firebase.firestore.FieldPath.documentId(), 'in', cartItems.map(x => {return x.itemInformation.id})).get();
+
+            for (let i = 0; itemStock.docs.length; i++) {
+                const [item] = itemStock.docs;
+                await item.ref.update({ stock: item.data().stock - 1 })
+            }
+
+            setClicker(false);
+        }
     }
 
     let estilosImagen = {
@@ -100,6 +113,8 @@ return <> {orderId === undefined ? <>
                 <input id='apellido' name='apellido'></input>
                 <label>Mail</label>
                 <input id='mail' name='mail'></input>
+                <label>Confirmar mail</label>
+                <input id='cMail'></input>
                 <label>Celular</label>
                 <input id='celular' name='celular'></input>
                 <label>Dni</label>
